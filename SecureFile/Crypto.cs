@@ -45,6 +45,9 @@ namespace SecureFile
         {
             //http://stackoverflow.com/questions/27645527/aes-encryption-on-large-files
 
+            process.processInstance.PrecessStatus = "Initializing the file.";
+            process.processInstance.p2.Width = 30;
+
             //generate random salt
             byte[] salt = GenerateRandomSalt();
             string fname = Path.GetFileName(inputFile);
@@ -55,11 +58,17 @@ namespace SecureFile
             //convert password string to byte arrray
             byte[] passwordBytes = System.Text.Encoding.UTF8.GetBytes(password);
 
+            process.processInstance.PrecessStatus = "output file created.";
+            process.processInstance.p2.Width = 60;
+            
             //Set Rijndael symmetric encryption algorithm
             RijndaelManaged AES = new RijndaelManaged();
             AES.KeySize = 256;
             AES.BlockSize = 128;
             AES.Padding = PaddingMode.PKCS7;
+
+            process.processInstance.PrecessStatus = "Creating encryptor.";
+            process.processInstance.p2.Width = 90;
 
             //http://stackoverflow.com/questions/2659214/why-do-i-need-to-use-the-rfc2898derivebytes-class-in-net-instead-of-directly
             //"What it does is repeatedly hash the user password along with the salt." High iteration counts.
@@ -73,6 +82,9 @@ namespace SecureFile
             // write salt to the begining of the output file, so in this case can be random every time
             fsCrypt.Write(salt, 0, salt.Length);
 
+            process.processInstance.PrecessStatus = "Getting input file ready.";
+            process.processInstance.p2.Width = 120;
+
             CryptoStream cs = new CryptoStream(fsCrypt, AES.CreateEncryptor(), CryptoStreamMode.Write);
 
             FileStream fsIn = new FileStream(inputFile, FileMode.Open);
@@ -81,6 +93,9 @@ namespace SecureFile
             byte[] buffer = new byte[1048576];
             int read;
 
+            process.processInstance.PrecessStatus = "Encrypting file.";
+            process.processInstance.p2.Width = 180;
+
             try
             {
                 while ((read = fsIn.Read(buffer, 0, buffer.Length)) > 0)
@@ -88,12 +103,14 @@ namespace SecureFile
                     Application.DoEvents(); // -> for responsive GUI, using Task will be better!
                     cs.Write(buffer, 0, read);
                 }
-
+                process.processInstance.PrecessStatus = "Encryption complete.";
+                process.processInstance.p2.Width = 421;
                 // Close up
                 fsIn.Close();
 
                 return true;
             }
+            
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
@@ -103,8 +120,9 @@ namespace SecureFile
             finally
             {
                 cs.Close();
-                fsCrypt.Close();
+                fsCrypt.Close();          
             }
+
         }
 
         /// <summary>

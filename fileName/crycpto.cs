@@ -121,10 +121,12 @@ namespace fileName
             {
                 cs.Close();
                 fsCrypt.Close();
+
+                Processing.progressInstance.PStatus = "Encryption complete.";
+                Processing.progressInstance.p2.Width = 380;
             }
 
-            Processing.progressInstance.PStatus = "Encryption complete.";
-            Processing.progressInstance.p2.Width = 380;
+            
         }
 
         /// <summary>
