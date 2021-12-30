@@ -238,7 +238,7 @@ namespace SecureFile
                 p.number.Visible = true;
                 p.number.Text = "0/" + importData.Count.ToString();
                 p.p2.Width = 0;
-                p.t.Enabled = false;
+                //p.t.Enabled = false;
                 int a = 400 / (importData.Count+1);
                 MessageBox.Show(a.ToString());
                 for (int i = 0; i < importData.Count; i++)

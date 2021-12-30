@@ -29,11 +29,11 @@ namespace SecureFile
             set { label1.Text = value; }
         }
 
-        public Timer t
-        {
-            set { timer1 = value; }
-            get { return timer1; }
-        }
+        //public Timer t
+        //{
+        //    set { timer1 = value; }
+        //    get { return timer1; }
+        //}
         public Panel p2
         {
             set { this.panel2 = value; }
@@ -63,16 +63,16 @@ namespace SecureFile
             InitializeComponent();
         }
 
-        private void timer1_Tick_1(object sender, EventArgs e)
-        {
-            //panel2.Width += 4;
-            //{
-            //    if (panel2.Width > 400)
-            //    {
-            //        timer1.Stop();
-            //    }
-            //}
-        }
+        //private void timer1_Tick_1(object sender, EventArgs e)
+        //{
+        //    //panel2.Width += 4;
+        //    //{
+        //    //    if (panel2.Width > 400)
+        //    //    {
+        //    //        timer1.Stop();
+        //    //    }
+        //    //}
+        //}
 
         private void process_Load(object sender, EventArgs e)
         {

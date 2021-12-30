@@ -120,9 +120,10 @@ namespace SecureFile
                 //Crypto.FileEncrypt(b, data[2] + "//Encrypted", "1234");
                 //MessageBox.Show(filePath);
                 process p = new process();
+                p.Visible = true;
                 p.Fname.Text = Path.GetFileName(filePath);
                 p.Fsize.Text = new FileInfo(filePath).Length.ToString() +" bytes";
-                p.Visible = true;
+                
 
                 if (Crypto.FileDecrypt(this.filePath, output, "1234"))
                 {
