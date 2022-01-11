@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -236,30 +237,32 @@ namespace SecureFile
             {
                 process p = new process();
                 p.number.Visible = true;
-                p.number.Text = "0/" + importData.Count.ToString();
+                //p.number.Text = "0/" + importData.Count.ToString();
                 p.p2.Width = 0;
                 //p.t.Enabled = false;
-                int a = 400 / (importData.Count+1);
-                MessageBox.Show(a.ToString());
+                //int a = 400 / (importData.Count+1);
+                //MessageBox.Show(a.ToString());
                 for (int i = 0; i < importData.Count; i++)
                 {
                     p.Fname.Text = Path.GetFileName(importData[i]);
                     p.Fsize.Text = new FileInfo(importData[i]).Length.ToString() + " bytes";
                     p.number.Text = (i+1).ToString() + "/" + importData.Count.ToString();
-                    if(i+1 == importData.Count)
-                    {
-                        p.p2.Width = 421;
-                    }
-                    else
-                    {
-                        p.p2.Width += a;
-                    }
+                    //if(i+1 == importData.Count)
+                    //{
+                    //    p.p2.Width = 421;
+                    //}
+                    //else
+                    //{
+                    //    p.p2.Width += a;
+                    //}
 
                     p.Visible = true;
                     string output = Form1.Instance.data[2] + "\\Encrypted";
                     try
                     {
                         Crypto.FileEncrypt(importData[i], output, "1234");
+                        p.PrecessStatus = "Done Encrycption";
+                        process.processInstance.p2.Width = 421;
                     }
                     catch
                     {
@@ -267,7 +270,9 @@ namespace SecureFile
                     }
                         
                 }
-                
+                p.PrecessStatus = "Done";
+                process.processInstance.p2.Width = 421;
+                Thread.Sleep(1000);
                 p.Visible = false;
             }
 

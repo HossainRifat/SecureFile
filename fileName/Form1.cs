@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SecureFile;
@@ -71,6 +72,7 @@ namespace fileName
                                 p.p2.Width = 421;
                                 this.textBox1.Text = "";
                                 System.Diagnostics.Process.Start(output);
+                                Thread.Sleep(1000);
                                 p.Visible = false;
                             }
                             else
@@ -91,6 +93,7 @@ namespace fileName
                                 this.d = 1;
                                 p.p2.Width = 421;
                                 this.textBox1.Text = "";
+                                Thread.Sleep(1000);
                                 p.Visible = false;
                                 Application.Exit();
                             }

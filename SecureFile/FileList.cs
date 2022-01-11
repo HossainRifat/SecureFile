@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -129,6 +130,7 @@ namespace SecureFile
                 {
                     p.p2.Width = 421;
                     System.Diagnostics.Process.Start(output);
+                    Thread.Sleep(1000);
                     p.Visible = false;
                 }
                 else

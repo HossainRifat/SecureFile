@@ -115,18 +115,17 @@ namespace SecureFile
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 150;
-//            this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Berlin Sans FB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label6.Location = new System.Drawing.Point(379, 98);
+            this.label6.Location = new System.Drawing.Point(407, 98);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(71, 26);
+            this.label6.Size = new System.Drawing.Size(43, 26);
             this.label6.TabIndex = 13;
-            this.label6.Text = "06/06";
+            this.label6.Text = "6/6";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.label6.Visible = false;
             // 
