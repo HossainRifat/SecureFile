@@ -40,17 +40,33 @@ namespace SecureFile
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //MessageBox.Show(nameEnDe.EnryptString("rifat"));
+            //MessageBox.Show(nameEnDe.DecryptString(nameEnDe.EnryptString("rifat")));
             Form1.Instance.p1.Visible = true;
             Form1.Instance.p2.Visible = true;
             Form1.Instance.p8.Visible = true;
 
+            string[] filePathsn = Directory.GetFiles(@"E:\5.SECURE FOLDER\Encrypted", "*.*",SearchOption.TopDirectoryOnly);
+            
+             for(int i = 0; i < filePathsn.Length; i++)
+             {
+                 string destinationPath = Path.Combine(Path.GetDirectoryName(filePathsn[i]), nameEnDe.DecryptString(Path.GetFileName(filePathsn[i])));
+                 // Console.WriteLine(filePathsn[i]);
+                 //Console.WriteLine(destinationPath);
+                 File.Move(filePathsn[i], destinationPath);
+             }
+             
             string[] filePaths = Directory.GetFiles(@"E:\5.SECURE FOLDER\Encrypted", "*.SFile", SearchOption.TopDirectoryOnly);
             FileList[] f = new FileList[filePaths.Length];
+
+
 
             Form1.Instance.f2mainpanel.Controls.Clear();
 
             for (int i = 0; i < filePaths.Length; i++)
             {
+                
+                
                 f[i] = new FileList();
                 f[i].FileName = Path.GetFileName(filePaths[i]);
                 f[i].FilePath = filePaths[i];

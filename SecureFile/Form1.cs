@@ -304,9 +304,25 @@ namespace SecureFile
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            
             DialogResult d = MessageBox.Show("Exit Application?", "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             if(d == DialogResult.Yes)
             {
+                string[] filePaths = Directory.GetFiles(@"E:\5.SECURE FOLDER\Encrypted", "*.SFile", SearchOption.TopDirectoryOnly);
+
+                for (int i = 0; i < filePaths.Length; i++)
+                {
+                    //Microsoft.VisualBasic.FileSystem.Rename(filePaths[i], nameEnDe.DecryptString(Path.GetFileName(filePaths[i])));
+                    //var sourcePath = filePaths[i];
+                    //var newName = nameEnDe.DecryptString(Path.GetFileName(filePaths[i]));
+                    //var directory = Path.GetDirectoryName(sourcePath);
+                    string destinationPath = Path.Combine(Path.GetDirectoryName(filePaths[i]), nameEnDe.EnryptString(Path.GetFileName(filePaths[i])));
+                    //MessageBox.Show(nameEnDe.DecryptString(Path.GetFileName(filePaths[i])));
+                    //Console.WriteLine(nameEnDe.EnryptString(Path.GetFileName(filePaths[i])));
+                    //MessageBox.Show(filePaths[i]);
+                    File.Move(filePaths[i], destinationPath);
+                    //Console.WriteLine(filePaths[i]);
+                }
                 string tempPath = data[2] + "\\temp";
                 if (Directory.Exists(tempPath))
                 {
@@ -321,12 +337,14 @@ namespace SecureFile
                         e.Cancel = true;
                     }
                 }
+
                 else
                 {
                     Application.ExitThread();
                 }
+
                 
-                
+
             }
             else if(d == DialogResult.Cancel)
             {
@@ -337,6 +355,31 @@ namespace SecureFile
                 e.Cancel = true;
             }
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.panel8.Visible = true;
+            this.secure_hide_clear.Visible = false;
+            this.secure_hide_start.Visible = false;
+            this.panel3.Size = new System.Drawing.Size(1063, 33);
+            this.f2mainpanel.Size = new System.Drawing.Size(1062, 689);
+
+            string[] filePaths = Directory.GetFiles(@"E:\5.SECURE FOLDER\Encrypted", "*.SFile", SearchOption.TopDirectoryOnly);
+            FileList[] f = new FileList[filePaths.Length];
+
+            Form1.Instance.f2mainpanel.Controls.Clear();
+
+            for (int i = 0; i < filePaths.Length; i++)
+            {
+                f[i] = new FileList();
+                f[i].FileName = Path.GetFileName(filePaths[i]);
+                f[i].FilePath = filePaths[i];
+                f[i].FileSize = new FileInfo(filePaths[i]).Length.ToString();
+                f[i].FileType = Path.GetExtension(filePaths[i]);
+                f[i].Operation = "open";
+                Form1.Instance.f2mainpanel.Controls.Add(f[i]);
+            }
         }
     }
 }
