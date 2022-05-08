@@ -42,6 +42,7 @@ namespace SecureFile
         {
             Form1.Instance.p1.Visible = true;
             Form1.Instance.p2.Visible = true;
+            Form1.Instance.p8.Visible = true;
 
             string[] filePaths = Directory.GetFiles(@"E:\5.SECURE FOLDER\Encrypted", "*.SFile", SearchOption.TopDirectoryOnly);
             FileList[] f = new FileList[filePaths.Length];

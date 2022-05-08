@@ -203,6 +203,8 @@
   <ItemGroup>
     <Content Include="icons8_security_aes_50_vPp_icon.ico" />
     <Content Include="icons8_security_aes_50__1__ter_icon.ico" />
+    <None Include="Resources\FullLogo_Transparent.png" />
+    <None Include="Resources\FullLogo.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

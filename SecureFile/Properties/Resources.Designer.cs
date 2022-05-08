@@ -153,6 +153,26 @@ namespace SecureFile.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap newLogo {
+            get {
+                object obj = ResourceManager.GetObject("newLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap newlogoTrans {
+            get {
+                object obj = ResourceManager.GetObject("newlogoTrans", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap wallpaperbetter_com_1920x1080__1_ {
             get {
                 object obj = ResourceManager.GetObject("wallpaperbetter.com_1920x1080 (1)", resourceCulture);

@@ -61,7 +61,7 @@ namespace SecureFile
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel1.BackColor = System.Drawing.Color.Gray;
             this.panel1.Controls.Add(this.panel6);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.label4);
@@ -89,8 +89,8 @@ namespace SecureFile
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.DarkGray;
-            this.pictureBox1.Image = global::SecureFile.Properties.Resources.wallpaperbetter_com_1920x1080__1_;
+            this.pictureBox1.BackColor = System.Drawing.Color.DimGray;
+            this.pictureBox1.Image = global::SecureFile.Properties.Resources.newlogoTrans;
             this.pictureBox1.Location = new System.Drawing.Point(0, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(48, 34);
@@ -101,7 +101,7 @@ namespace SecureFile
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.DarkGray;
+            this.label4.BackColor = System.Drawing.Color.DimGray;
             this.label4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label4.Location = new System.Drawing.Point(44, 9);
@@ -218,7 +218,7 @@ namespace SecureFile
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.DarkGray;
+            this.panel5.BackColor = System.Drawing.Color.DimGray;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(189, 71);
@@ -229,31 +229,30 @@ namespace SecureFile
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.Control;
             this.flowLayoutPanel1.ForeColor = System.Drawing.SystemColors.Control;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(198, 80);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(198, 82);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1062, 645);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1071, 643);
             this.flowLayoutPanel1.TabIndex = 1;
             this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.DarkGray;
-            this.panel3.Controls.Add(this.panel8);
             this.panel3.Controls.Add(this.panel7);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(197, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1074, 80);
+            this.panel3.Size = new System.Drawing.Size(1074, 50);
             this.panel3.TabIndex = 2;
             this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // panel8
             // 
+            this.panel8.BackColor = System.Drawing.SystemColors.ControlDark;
             this.panel8.Controls.Add(this.label3);
             this.panel8.Controls.Add(this.label2);
             this.panel8.Controls.Add(this.label1);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(0, 47);
+            this.panel8.Location = new System.Drawing.Point(197, 51);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(1074, 33);
             this.panel8.TabIndex = 5;
@@ -298,7 +297,6 @@ namespace SecureFile
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(1074, 47);
             this.panel7.TabIndex = 4;
-            this.panel7.Visible = false;
             // 
             // button6
             // 
@@ -314,6 +312,7 @@ namespace SecureFile
             this.button6.TabIndex = 3;
             this.button6.Text = "Clear All";
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Visible = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button7
@@ -330,6 +329,7 @@ namespace SecureFile
             this.button7.TabIndex = 2;
             this.button7.Text = "Start";
             this.button7.UseVisualStyleBackColor = false;
+            this.button7.Visible = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // openFileDialog1
@@ -341,6 +341,7 @@ namespace SecureFile
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1271, 749);
+            this.Controls.Add(this.panel8);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);

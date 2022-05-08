@@ -36,10 +36,28 @@ namespace SecureFile
             get { return flowLayoutPanel1; }
         }
 
+        public Panel p8
+        {
+            set { this.panel8 = value; }
+            get { return this.panel8; }
+        }
+
         public Panel p7
         {
             set { this.panel7 = value; }
             get { return this.panel7; }
+        }
+
+        public Button secure_hide_start
+        {
+            set { this.button7 = value; }
+            get { return this.button7; }
+        }
+
+        public Button secure_hide_clear
+        {
+            set { this.button6 = value; }
+            get { return this.button6; }
         }
 
         public Panel p1
@@ -64,6 +82,7 @@ namespace SecureFile
             _obj = this;
             this.panel1.Visible = false;
             this.panel3.Visible = false;
+            this.panel8.Visible = false;
             this.panel3.Size = new System.Drawing.Size(1063, 33);
             this.f2mainpanel.Size = new System.Drawing.Size(1062, 689);
             
@@ -105,7 +124,9 @@ namespace SecureFile
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.p7.Visible = false;
+            this.panel8.Visible = true; 
+            this.secure_hide_clear.Visible = false;
+            this.secure_hide_start.Visible = false;
             this.panel3.Size = new System.Drawing.Size(1063, 33);
             this.f2mainpanel.Size = new System.Drawing.Size(1062, 689);
 
@@ -153,8 +174,10 @@ namespace SecureFile
             Form1.Instance.f2mainpanel.Controls.Clear(); 
             this.panel3.Size = new System.Drawing.Size(1063, 80);
             this.f2mainpanel.Size = new System.Drawing.Size(1062, 645);
-            
-            this.p7.Visible = true;
+
+            this.panel8.Visible = true;
+            this.secure_hide_clear.Visible = true;
+            this.secure_hide_start.Visible = true;
             openFileDialog1.FileName = null;
             openFileDialog1.Multiselect = true;
             openFileDialog1.InitialDirectory = "E:\\USER\\videos";
