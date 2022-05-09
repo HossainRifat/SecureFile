@@ -5,6 +5,10 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security;
+using System.Security.AccessControl;
+using System.Security.Permissions;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -40,6 +44,51 @@ namespace SecureFile
 
         private void button1_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // Way safer than string comparison against "BUILTIN\\Administrators"
+                IdentityReference BuiltinAdministrators = new SecurityIdentifier(WellKnownSidType.BuiltinAdministratorsSid, null);
+                IdentityReference AuthenticatedUsers = new SecurityIdentifier(WellKnownSidType.AuthenticatedUserSid, null);
+
+                FileSecurity FileACL = File.GetAccessControl("E:\\USER\\Desktop\\11.png"); // Grab ACL from file
+
+                if (FileACL.GetOwner(typeof(SecurityIdentifier)) != BuiltinAdministrators) // Check if correct owner is set
+                {
+                    FileACL.SetOwner(BuiltinAdministrators); // If not, make it so!
+                }
+
+                foreach (FileSystemAccessRule fsRule in FileACL.GetAccessRules(true, true, typeof(SecurityIdentifier)))
+                {
+                    if ((fsRule.FileSystemRights & FileSystemRights.Delete) == FileSystemRights.Delete ||
+                           (fsRule.FileSystemRights & FileSystemRights.ChangePermissions) == FileSystemRights.ChangePermissions) // Check if rule grants delete or change permissions
+                    {
+                        FileACL.RemoveAccessRule(fsRule); // If so, nuke it!
+                    }
+                }
+
+                // Add explicit rules
+                FileACL.AddAccessRule(new FileSystemAccessRule(BuiltinAdministrators, FileSystemRights.Delete, AccessControlType.Deny));
+                FileACL.AddAccessRule(new FileSystemAccessRule(BuiltinAdministrators, FileSystemRights.Read, AccessControlType.Allow));
+                FileACL.AddAccessRule(new FileSystemAccessRule(BuiltinAdministrators, FileSystemRights.ReadAndExecute, AccessControlType.Allow));
+                FileACL.AddAccessRule(new FileSystemAccessRule(BuiltinAdministrators, FileSystemRights.Write, AccessControlType.Allow));
+                FileACL.AddAccessRule(new FileSystemAccessRule(BuiltinAdministrators, FileSystemRights.Modify, AccessControlType.Allow));
+                FileACL.AddAccessRule(new FileSystemAccessRule(BuiltinAdministrators, FileSystemRights.ChangePermissions, AccessControlType.Allow));
+                
+                FileACL.AddAccessRule(new FileSystemAccessRule(AuthenticatedUsers, FileSystemRights.Delete, AccessControlType.Deny));
+                FileACL.AddAccessRule(new FileSystemAccessRule(AuthenticatedUsers, FileSystemRights.ReadAndExecute, AccessControlType.Deny));
+                FileACL.AddAccessRule(new FileSystemAccessRule(AuthenticatedUsers, FileSystemRights.Modify, AccessControlType.Deny));
+                //FileACL.AddAccessRule(new FileSystemAccessRule(AuthenticatedUsers, FileSystemRights.Delete, AccessControlType.Deny));
+                FileACL.AddAccessRule(new FileSystemAccessRule(AuthenticatedUsers, FileSystemRights.ChangePermissions, AccessControlType.Deny));
+                FileACL.AddAccessRule(new FileSystemAccessRule(AuthenticatedUsers, FileSystemRights.Read, AccessControlType.Allow));
+                FileACL.AddAccessRule(new FileSystemAccessRule(AuthenticatedUsers, FileSystemRights.Write, AccessControlType.Allow));
+
+                FileACL.SetAccessRuleProtection(true, false); // Enable protection from inheritance, remove existing inherited rules
+                File.SetAccessControl("E:\\USER\\Desktop\\11.png", FileACL); // Write ACL back to file
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
             //MessageBox.Show(nameEnDe.EnryptString("rifat"));
             //MessageBox.Show(nameEnDe.DecryptString(nameEnDe.EnryptString("rifat")));
             Form1.Instance.p1.Visible = true;
